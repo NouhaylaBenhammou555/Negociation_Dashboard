@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Role Evolution & Salary Handout — Tabs</title>
+  <style>
+    :root{--bg:#f8f9fa;--card:#fff;--muted:#666;--accent:#107C10;--border:#e5e9f0}
+    html,body{height:100%}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;margin:0;background:var(--bg);color:#222;line-height:1.5}
+    header{display:flex;align-items:center;gap:16px;padding:24px 32px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.05);border-bottom:1px solid var(--border)}
+    header h1{margin:0;font-size:20px;font-weight:600;color:#111}
+    header div{font-size:13px;color:var(--muted)}
+    .tabs{display:flex;gap:2px;padding:0 32px;background:#fff;border-bottom:2px solid var(--border);overflow-x:auto}
+    .tab{padding:14px 18px;cursor:pointer;background:transparent;color:var(--muted);border:none;font-weight:500;font-size:14px;border-bottom:3px solid transparent;transition:all 0.2s}
+    .tab:hover{color:#111;background:#f5f6f8}
+    .tab.active{color:var(--accent);border-bottom-color:var(--accent);background:transparent}
+    main{padding:32px;max-width:1400px;margin:0 auto}
+    .panel{display:none}
+    .panel.active{display:block}
+    h2{margin:0 0 24px 0;font-size:24px;font-weight:600;color:#111}
+    .grid{display:grid;grid-template-columns:1fr;gap:20px}
+    @media(min-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1600px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;min-height:100px;transition:box-shadow 0.2s}
+    .card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+    .card h3{margin:0 0 12px 0;font-size:15px;font-weight:600;color:#111}
+    .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px}
+    .kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;transition:all 0.2s}
+    .kpi:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(16,124,16,0.1)}
+    .kpi .value{font-size:26px;font-weight:700;color:var(--accent);line-height:1.2}
+    .kpi .label{color:var(--muted);font-size:13px;margin-top:8px}
+    .kpi-strip{padding:16px;border-radius:12px;display:block;background:var(--card);margin-bottom:20px}
+    .kpi-strip .embed{height:160px}
+    .pill-list{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;margin:12px 0 0 0;padding:0;list-style:none}
+    .pill{background:#f0f4f8;border:1px solid var(--border);border-radius:6px;padding:6px 12px;color:#333;font-weight:500}
+    .embed{width:100%;height:420px;border-radius:8px;border:1px solid var(--border);background:#fff}
+    .fallback{display:flex;align-items:center;justify-content:center;height:420px;color:var(--muted);font-size:14px}
+    .meta{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.4}
+    .small-link{font-size:13px;color:#2563eb;text-decoration:none}
+    .small-link:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Role Evolution & Salary Handout</h1>
+    <div style="margin-left:auto;color:var(--muted)">Charts and Web page created by Nouhayla Benhammou</div>
+  </header>
+  <div class="tabs" role="tablist">
+    <div class="tab active" data-target="tab1" role="tab">Benchmark AI market</div>
+    <div class="tab" data-target="tab2" role="tab">Contribution Dashboard</div>
+    <div class="tab" data-target="tab3" role="tab">Negotiation Summary</div>
+  </div>
+
+  <div id="tab1" class="panel active" aria-labelledby="Benchmark AI market">
+    <main>
+      <h2 style="margin-top:0">Benchmark AI market</h2>
+      <div class="kpi-strip card" aria-hidden="false" style="margin-bottom:12px;">
+        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between; width:100%">
+          <div style="flex:1;min-width:0">
+            <div class="embed" data-src="outputs/handout/kpis.html" id="embed-kpis"></div>
+          </div>
+        </div>
+        <div class="meta">KPI strip — quick snapshot of key salary indicators (CAD). Use this as the dashboard header.</div>
+      </div>
+      <div class="grid">
+        <div class="card" id="card-industry">
+          <h3> Industry Share</h3>
+          <div class="embed" data-src="outputs/handout/industry_share.html" id="embed-industry"></div>
+          <div class="meta">Distribution of AI roles across different industry sectors.</div>
+        </div>
+        <div class="card" id="card-demand">
+          <h3> AI Engineer Demand Growth (2020–2030)</h3>
+          <div class="embed" data-src="outputs/handout/demand_growth.html" id="embed-demand"></div>
+          <div class="meta">Market demand trajectory with 540% growth. ChatGPT launch marked major acceleration in 2023.</div>
+        </div>
+        <div class="card" id="card-geo">
+          <h3> Avg Salary by City</h3>
+          <div class="embed" data-src="outputs/handout/geo.html" id="embed-geo"></div>
+          <div class="meta">Real data: 89 records across 15 Canadian cities (internships excluded). Toronto leads at $130K median.</div>
+        </div>
+        <div class="card" id="card-vis3">
+          <h3> Min/Avg/Max Distribution</h3>
+          <div class="embed" data-src="outputs/handout/vis3_salary_distribution.html" id="embed-vis3"></div>
+          <div class="meta">Salary range breakdown by city. Shows variability across markets.</div>
+        </div>
+        <div class="card" id="card-exp">
+          <h3> Experience Progression</h3>
+          <div class="embed" data-src="outputs/handout/exp_progression.html" id="embed-exp"></div>
+          <div class="meta">Salary growth by experience level. 4-6 years shows biggest jump.</div>
+        </div>
+        <div class="card" id="card-tc">
+          <h3> Total Compensation</h3>
+          <div class="embed" data-src="outputs/handout/total_comp.html" id="embed-total-comp"></div>
+          <div class="meta">Distribution including base, stock, bonus by experience.</div>
+        </div>
+        <div class="card" id="card-montreal-2-3">
+          <h3> Montreal AI Engineer (2-3 Years)</h3>
+          <div class="embed" data-src="outputs/handout/montreal_2_3_years.html" id="embed-montreal-2-3"></div>
+          <div class="meta">Your target market: Montreal AI Engineers with 2-3 years experience. Min $57K, Avg $95K, Max $125K (10 records).</div>
+        </div>
+        <div class="card" id="card-pct">
+          <h3> Salary Percentiles</h3>
+          <div class="embed" data-src="outputs/handout/percentiles.html" id="embed-percentiles"></div>
+          <div class="meta">P10/P25/P50/P75/P90 breakdown. Benchmark your negotiation target.</div>
+        </div>
+        <div class="card" id="card-career">
+          <h3> Career Progression by Years</h3>
+          <div class="embed" data-src="outputs/handout/career_progression.html" id="embed-career"></div>
+          <div class="meta">Position levels mapped to experience: Intern → Entry → Mid → Senior → Principal → Executive.</div>
+        </div>
+        <div class="card" id="card-montreal">
+          <h3> Montreal Companies</h3>
+          <div class="embed" data-src="outputs/handout/montreal_companies.html" id="embed-montreal"></div>
+          <div class="meta">Salary ranges by company in Montreal. Error bars show min-max spread.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="tab2" class="panel">
+    <main>
+      <h2 style="margin-top:0">Key Contributions & Profile Evolution</h2>
+      <div class="kpi-row" aria-label="Contribution KPIs">
+        <div class="kpi">
+          <div class="value">8</div>
+          <div class="label">Total projects delivered</div>
+        </div>
+        <div class="kpi">
+          <div class="value">1</div>
+          <div class="label">Client engagements (Synchrony)</div>
+        </div>
+        <div class="kpi">
+          <div class="value">2</div>
+          <div class="label">FinLabs projects (M&A Teaser, Credit Memo)</div>
+        </div>
+        <div class="kpi">
+          <div class="value">5</div>
+          <div class="label">Internal builds (zerog, reconAI, agenda maker, banon, codesense)</div>
+        </div>
+      </div>
+      <div class="grid">
+
+
+        <div class="card" id="card-skills">
+          <h3>Skills by Stream</h3>
+          <canvas id="chart-skills" aria-label="Skills by category" role="img" height="300"></canvas>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px;font-size:12px;">
+            <div>
+              <strong>Integration</strong>
+              <ul class="pill-list">
+                <li class="pill">FastAPI</li>
+                <li class="pill">Django</li>
+                <li class="pill">Gradio</li>
+                <li class="pill">Streamlit</li>
+              </ul>
+            </div>
+            <div>
+              <strong>Deployment</strong>
+              <ul class="pill-list">
+                <li class="pill">Deployment</li>
+              </ul>
+            </div>
+            <div>
+              <strong>GenAI</strong>
+              <ul class="pill-list">
+                <li class="pill">Finetuning LLM</li>
+                <li class="pill">Prompt engineering</li>
+                <li class="pill">VectorDBs (Neo4j, MongoDB, ChromaDB, Pinecone)</li>
+                <li class="pill">LLMChains</li>
+                <li class="pill">RAG</li>
+                <li class="pill">GraphRAG</li>
+                <li class="pill">Agentic AI</li>
+                <li class="pill">MCP</li>
+                <li class="pill">NER</li>
+                <li class="pill">NLP</li>
+                <li class="pill">NLU</li>
+                <li class="pill">Transformers</li>
+                <li class="pill">LangChain</li>
+                <li class="pill">LangGraph</li>
+              </ul>
+            </div>
+            <div>
+              <strong>Deep Learning</strong>
+              <ul class="pill-list">
+                <li class="pill">Gradient masking</li>
+                <li class="pill">Dropout techniques</li>
+                <li class="pill">Data augmentation</li>
+                <li class="pill">PyTorch</li>
+                <li class="pill">TensorFlow</li>
+              </ul>
+            </div>
+            <div>
+              <strong>Architecting</strong>
+              <ul class="pill-list">
+                <li class="pill">Planning from scratch</li>
+                <li class="pill">System design</li>
+                <li class="pill">Project architecture</li>
+              </ul>
+            </div>
+          </div>
+          <div class="meta">Nested donut: inner ring = categories, outer ring = individual skills; pills list the techniques.</div>
+        </div>
+
+        <div class="card" id="card-market-compare">
+          <h3>Skills vs Market Demand (2026)</h3>
+          <canvas id="chart-market" aria-label="Skills vs market demand" role="img" height="320"></canvas>
+          <div class="meta">Hardcoded comparison of your coverage vs projected 2026 demand across key streams.</div>
+        </div>
+        <div class="card" id="card-soft-skills">
+          <h3>Soft Skills Evolution (Dec 2023–Dec 2025)</h3>
+          <canvas id="chart-soft" aria-label="Soft skills evolution" role="img" height="320"></canvas>
+          <div class="meta">Growth trajectory of key soft skills over the last 2 years. Self-assessed on a 1–5 scale.</div>
+        </div>
+        <div class="card" id="card-value-prop">
+          <h3>Key Value Propositions</h3>
+          <div class="embed" data-src="outputs/handout/value_propositions_radar.html" id="embed-value-prop"></div>
+          <div class="meta">Strengths vs market average across 5 competencies; supports contribution narrative.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="tab3" class="panel">
+    <main>
+      <h2 style="margin-top:0">Negotiation Summary</h2>
+      
+      <div class="kpi-row" aria-label="Negotiation KPIs">
+        <div class="kpi">
+          <div class="value">24</div>
+          <div class="label">Technical skills acquired</div>
+        </div>
+        <div class="kpi">
+          <div class="value">8</div>
+          <div class="label">Projects delivered</div>
+        </div>
+        <div class="kpi">
+          <div class="value">90%</div>
+          <div class="label">Market readiness (avg)</div>
+        </div>
+        <div class="kpi">
+          <div class="value">+85%</div>
+          <div class="label">Soft skills growth</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card" id="card-salary-position">
+          <h3>Salary Evolution — Market vs Me (2023–2025)</h3>
+          <div class="embed" data-src="outputs/handout/salary_position_evolution.html" id="embed-salary-position"></div>
+          <div class="meta">Negotiation benchmark: market median vs my journey (JR to Associate).</div>
+        </div>
+        <div class="card">
+          <h3>Suggested Salary Targets (CAD, 2026)</h3>
+          <div class="embed" data-src="outputs/handout/salary_targets_gauge.html" id="embed-salary-targets"></div>
+          <div class="meta">Based on Montreal AI market data (2–3 yrs experience) + skill premium.</div>
+        </div>
+
+        <div class="card">
+          <h3>Suggested Salary Targets — Details</h3>
+          <div style="font-size:13px;line-height:1.8;margin:10px 0;">
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e2e8f0;">
+              <span><strong>Conservative (P25):</strong></span>
+              <span style="color:#f59e0b;font-weight:700;">$95,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e2e8f0;">
+              <span><strong>Target (P50):</strong></span>
+              <span style="color:#10b981;font-weight:700;">$100,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e2e8f0;">
+              <span><strong>Aspirational (P75):</strong></span>
+              <span style="color:#2563eb;font-weight:700;">$105,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;">
+              <span><strong>With equity/bonus:</strong></span>
+              <span style="color:#8b5cf6;font-weight:700;">$108,000–$115,000</span>
+            </div>
+          </div>
+          <div class="meta">Salary range aligned with Montreal AI market (95K–105K CAD annual base).</div>
+        </div>
+
+        <div class="card">
+          <h3>Career Aspirations & Timeline</h3>
+          <div style="font-size:13px;line-height:1.8;margin:10px 0;">
+            <div style="padding:8px 0;display:flex;gap:12px;align-items:flex-start;">
+              <span style="background:#2563eb;color:#fff;border-radius:4px;padding:4px 8px;font-size:11px;font-weight:700;">2027</span>
+              <span><strong>MBA Candidacy:</strong> Planning to apply for MBA programs to complement technical expertise with business acumen</span>
+            </div>
+            <div style="padding:8px 0;display:flex;gap:12px;align-items:flex-start;">
+              <span style="background:#10b981;color:#fff;border-radius:4px;padding:4px 8px;font-size:11px;font-weight:700;">2028</span>
+              <span><strong>Relocation with Synechron:</strong> Open to international mobility within the Synechron network to expand impact and market exposure</span>
+            </div>
+            <div style="padding:8px 0;display:flex;gap:12px;align-items:flex-start;">
+              <span style="background:#8b5cf6;color:#fff;border-radius:4px;padding:4px 8px;font-size:11px;font-weight:700;">LONG-TERM</span>
+              <span><strong>Leadership Role:</strong> Aspiring to lead AI/ML teams and drive strategic initiatives at the intersection of technology and business</span>
+            </div>
+          </div>
+          <div class="meta">Sharing aspirations demonstrates commitment to growth and alignment with Synechron's global footprint.</div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:20px;padding:14px;background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;font-size:13px;line-height:1.6;">
+        <div style="font-weight:700;color:#92400e;margin-bottom:8px;">Synechron Side (Employer):</div>
+        <div style="margin:8px 0;">
+          <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:6px;">
+            <span style="background:#10b981;color:#fff;border-radius:4px;padding:4px 8px;font-size:11px;font-weight:700;flex-shrink:0;">1</span>
+            <span><strong>Position Change:</strong> JR Associate → Associate (0–3 yrs baseline)</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:flex-start;">
+            <span style="background:#10b981;color:#fff;border-radius:4px;padding:4px 8px;font-size:11px;font-weight:700;flex-shrink:0;">2</span>
+            <span><strong>Salary Alignment:</strong> Market average (95K–105K CAD) based on Montreal AI data</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;padding:14px;background:#dbeafe;border:1px solid #93c5fd;border-radius:10px;font-size:13px;line-height:1.6;">
+        <div style="font-weight:700;color:#1e3a8a;margin-bottom:8px;">My Side (Candidate):</div>
+        <div style="margin:8px 0;">
+          <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:6px;">
+            <span style="background:#2563eb;color:#fff;border-radius:4px;padding:4px 8px;font-size:11px;font-weight:700;flex-shrink:0;">3</span>
+            <span><strong>Continue Evolution:</strong> Pursue MBA candidature (2027) to complement technical expertise with business acumen</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:flex-start;">
+            <span style="background:#2563eb;color:#fff;border-radius:4px;padding:4px 8px;font-size:11px;font-weight:700;flex-shrink:0;">4</span>
+            <span><strong>Relocation Options:</strong> Explore Synechron international opportunities (beginning of 2028) for market exposure and career acceleration</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding:20px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;font-size:13px;line-height:1.7;">
+        <strong style="color:#166534;font-size:14px;"> Official Compensation Request</strong>
+        <p style="margin:12px 0;">Based on comprehensive market analysis of real salary records for AI Engineers in Montreal with 2-3 years of experience, I am formally requesting:</p>
+        <ul style="margin:8px 0 12px 20px;padding:0;">
+          <li style="margin:8px 0;">Title adjustment to <strong>Associate AI Engineer</strong></li>
+          <li style="margin:8px 0;">Salary adjustment to <strong>$95,000-$100,000 CAD</strong> (annually)</li>
+        </ul>
+        <p style="margin:12px 0 8px 0;"><strong>This request is substantiated by:</strong></p>
+        <ol style="margin:0 0 0 20px;padding:0;">
+          <li style="margin:8px 0;">Current market average of <strong>$94,000</strong> and median of <strong>$97,000</strong> for my experience level in Montreal</li>
+          <li style="margin:8px 0;">My demonstrated progression with <strong>24 technical and soft skills</strong></li>
+          <li style="margin:8px 0;">Successful delivery of <strong>8 projects</strong> with measurable business impact</li>
+        </ol>
+      </div>
+
+      <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button onclick="window.print()" style="padding:12px 24px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:14px;">🖨️ Print Current Tab</button>
+        <button onclick="alert('Export feature: integrate with PDF library or backend endpoint')" style="padding:12px 24px;background:#10b981;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:14px;">📄 Export PDF</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.querySelectorAll('.tab').forEach(function(el){
+      el.addEventListener('click', function(){
+        document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'))
+        document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'))
+        el.classList.add('active')
+        document.getElementById(el.dataset.target).classList.add('active')
+        // Load embeds when tab becomes active
+        if(el.dataset.target === 'tab2'){
+          embedOrFallback('embed-tech-skills');
+        }
+      })
+    })
+    
+    // embed interactive HTML when available; fall back to PNG or a simple link
+    async function embedOrFallback(id){
+      const container = document.getElementById(id);
+      if(!container) return;
+      const src = container.dataset.src;
+      try{
+        const resp = await fetch(src, {method:'GET'});
+        if(resp.ok){
+          container.innerHTML = `<iframe class=\"embed\" src=\"${src}\"></iframe>`;
+          return;
+        }
+      }catch(e){/* ignore network/file errors */}
+      const png = src.replace('.html','.png');
+      try{
+        const resp2 = await fetch(png, {method:'HEAD'});
+        if(resp2.ok){
+          container.innerHTML = `<img class=\"embed\" src=\"${png}\" alt=\"${id}\">`; return;
+        }
+      }catch(e){}
+      container.innerHTML = `<div class=\"fallback\">Interactive file not available. <a class=\"small-link\" href=\"${src}\">Open HTML</a> · <a class=\"small-link\" href=\"${png}\">Open PNG</a></div>`;
+    }
+
+    ['embed-kpis','embed-geo','embed-vis3','embed-montreal-2-3','embed-industry','embed-exp','embed-career','embed-montreal','embed-total-comp','embed-demand','embed-percentiles','embed-value-prop','embed-salary-targets','embed-salary-position'].forEach(id=>embedOrFallback(id));
+
+    // Project contribution histogram removed
+
+    // Skills by stream (nested donut: inner=categories, outer=skills)
+    const skillsCtx = document.getElementById('chart-skills');
+    if(skillsCtx && window.Chart){
+      const categories = [
+        {label:'Integration', count:4, color:'#0f6bff'},
+        {label:'Deployment', count:1, color:'#7c3aed'},
+        {label:'GenAI', count:14, color:'#06b6d4'},
+        {label:'Deep Learning', count:5, color:'#ec4899'},
+        {label:'Architecting', count:3, color:'#f59e0b'}
+      ];
+      const skills = [
+        {label:'FastAPI', category:'Integration'},
+        {label:'Django', category:'Integration'},
+        {label:'Gradio', category:'Integration'},
+        {label:'Streamlit', category:'Integration'},
+        {label:'Deployment', category:'Deployment'},
+        {label:'Finetuning LLM', category:'GenAI'},
+        {label:'Prompt engineering', category:'GenAI'},
+        {label:'VectorDBs (Neo4j, MongoDB, ChromaDB, Pinecone)', category:'GenAI'},
+        {label:'LLMChains', category:'GenAI'},
+        {label:'RAG', category:'GenAI'},
+        {label:'GraphRAG', category:'GenAI'},
+        {label:'Agentic AI', category:'GenAI'},
+        {label:'MCP', category:'GenAI'},
+        {label:'NER', category:'GenAI'},
+        {label:'NLP', category:'GenAI'},
+        {label:'NLU', category:'GenAI'},
+        {label:'Transformers', category:'GenAI'},
+        {label:'LangChain', category:'GenAI'},
+        {label:'LangGraph', category:'GenAI'},
+        {label:'Gradient masking', category:'Deep Learning'},
+        {label:'Dropout techniques', category:'Deep Learning'},
+        {label:'Data augmentation', category:'Deep Learning'},
+        {label:'PyTorch', category:'Deep Learning'},
+        {label:'TensorFlow', category:'Deep Learning'},
+        {label:'Planning from scratch', category:'Architecting'},
+        {label:'System design', category:'Architecting'},
+        {label:'Project architecture', category:'Architecting'}
+      ];
+      const categoryColors = Object.fromEntries(categories.map(c=>[c.label,c.color]));
+      const categoryShades = {
+        Integration:['#0f6bff','#3d82f6','#60a5fa','#93c5fd'],
+        Deployment:['#7c3aed','#a78bfa','#c4b5fd','#ede9fe'],
+        GenAI:['#06b6d4','#22d3ee','#67e8f9','#a5f3fc','#cffafe'],
+        'Deep Learning':['#ec4899','#f472b6','#f797d6','#fbcfe8','#fce7f3'],
+        Architecting:['#f59e0b','#fbbf24','#fcd34d','#fde68a','#fef3c7']
+      };
+      const categoryIndex = {};
+      const skillColors = skills.map(s=>{
+        const shades = categoryShades[s.category] || ['#cbd5e1'];
+        const idx = categoryIndex[s.category] || 0;
+        categoryIndex[s.category] = idx + 1;
+        return shades[idx % shades.length];
+      });
+      new Chart(skillsCtx,{
+        type:'doughnut',
+        data:{
+          labels:categories.map(c=>c.label),
+          datasets:[
+            {
+              label:'Categories',
+              data:categories.map(c=>c.count),
+              backgroundColor:categories.map(c=>c.color),
+              borderWidth:0,
+              weight:1
+            },
+            {
+              label:'Skills',
+              data:skills.map(()=>1),
+              backgroundColor:skillColors,
+              borderWidth:0,
+              weight:1,
+              spacing:1
+            }
+          ]
+        },
+        options:{
+          cutout:'38%',
+          plugins:{
+            legend:{position:'bottom'},
+            tooltip:{
+              callbacks:{
+                label:function(ctx){
+                  const dsIndex = ctx.datasetIndex;
+                  if(dsIndex===0){
+                    const cat = categories[ctx.dataIndex];
+                    return `${cat.label}: ${cat.count} skills`;
+                  }
+                  const skill = skills[ctx.dataIndex];
+                  return `${skill.label} — ${skill.category}`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Skills vs Market Demand (2026) — grouped bars
+    const marketCtx = document.getElementById('chart-market');
+    if(marketCtx && window.Chart){
+      const labels = ['GenAI','Integration','Deployment','Deep Learning','Architecting'];
+      const mySkills = [4.5,4,2,3.5,4];
+      const marketDemand = [5,4.2,3.5,4.5,4.8];
+      new Chart(marketCtx,{
+        type:'bar',
+        data:{
+          labels,
+          datasets:[
+            {label:'My skill coverage', data:mySkills, backgroundColor:'#0f6bff', borderRadius:6, barThickness:26},
+            {label:'AI Market demand 2026', data:marketDemand, backgroundColor:'#ec4899', borderRadius:6, barThickness:26}
+          ]
+        },
+        options:{
+          indexAxis:'y',
+          scales:{
+            x:{beginAtZero:true,max:5,ticks:{stepSize:1}},
+            y:{ticks:{autoSkip:false}}
+          },
+          plugins:{
+            legend:{position:'bottom'},
+            tooltip:{callbacks:{
+              label:function(ctx){return `${ctx.dataset.label}: ${ctx.raw.toFixed(1)}/5`;}
+            }}
+          }
+        }
+      });
+    }
+
+    // Soft skills evolution (2024–2026) — multi-line chart
+    const softCtx = document.getElementById('chart-soft');
+    if(softCtx && window.Chart){
+      const timeline = ['Dec 2023','Jun 2024','Dec 2024','Jan 2025','Jun 2025','Oct 2025','Dec 2025'];
+      const skills = [
+        {label:'Communication',data:[2.5,3,3.5,3.2,3.8,4.2,4.5],color:'#0f6bff'},
+        {label:'Leadership',data:[2,2.5,3,3.3,3.6,4.2,4],color:'#7c3aed'},
+        {label:'Problem Solving',data:[3,3.5,4,4.2,4.4,4.8,4.6],color:'#06b6d4'},
+        {label:'Teamwork',data:[3,3.5,4,4.1,4.3,4.5,4.6],color:'#ec4899'},
+        {label:'Adaptability',data:[2.5,3.2,3.8,4,4.3,4.5,4.7],color:'#f59e0b'},
+        {label:'Visibility',data:[1.8,2.5,3.0,2.7,3.2,3.5,3.8],color:'#10b981'}
+      ];
+      new Chart(softCtx,{
+        type:'line',
+        data:{
+          labels:timeline,
+          datasets:skills.map(s=>({
+            label:s.label,
+            data:s.data,
+            borderColor:s.color,
+            backgroundColor:s.color+'33',
+            borderWidth:2,
+            fill:false,
+            tension:0.3,
+            pointRadius:4,
+            pointHoverRadius:6
+          }))
+        },
+        options:{
+          scales:{
+            y:{beginAtZero:true,max:5,ticks:{stepSize:0.5}},
+            x:{ticks:{autoSkip:false}}
+          },
+          plugins:{
+            legend:{position:'bottom'},
+            tooltip:{mode:'index',intersect:false}
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

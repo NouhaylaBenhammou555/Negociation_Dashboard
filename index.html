@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Salary Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 28px;
+            padding: 65px 55px;
+            max-width: 750px;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.4), 0 0 1px rgba(0,0,0,0.05);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.2em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            color: #718096;
+            font-size: 1.3em;
+            margin-bottom: 45px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        
+        .description {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 18px;
+            padding: 35px;
+            margin: 40px 0;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .description p {
+            color: #2d3748;
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .dashboards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 0;
+        }
+        
+        .dashboard-item {
+            background: white;
+            padding: 20px 10px;
+            border-radius: 12px;
+            border: 2px solid #cbd5e0;
+            font-size: 0.95em;
+            color: #4a5568;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .dashboard-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.45);
+            letter-spacing: 0.3px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .footer {
+            margin-top: 45px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+            color: #a0aec0;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Salary Dashboard</h1>
+        <p class="subtitle">Interactive Salary Negotiation Package</p>
+        
+        <div class="description">
+            <p>Access 3 complementary interactive dashboards with comprehensive market analysis and career insights</p>
+            <div class="dashboards">
+                <div class="dashboard-item">Market Benchmark</div>
+                <div class="dashboard-item">Contribution & Growth</div>
+                <div class="dashboard-item">Negotiation Strategy</div>
+            </div>
+        </div>
+
+        <a href="salary_handout_tabs.html" class="cta-button">View Dashboard →</a>
+
+        <div class="footer">
+            <p>Fully interactive charts with zoom, hover, and export features</p>
+            <p>Based on 89 real salary records from Montreal AI market</p>
+        </div>
+    </div>
+</body>
+</html>
